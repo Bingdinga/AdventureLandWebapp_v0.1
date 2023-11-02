@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AdventureLandWebapp.Models.ATTRACTION>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AttractionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Open_Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Close_Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last_Maintained)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height_Req_Inches)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age_Req)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttractionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Open_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Close_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Maintained)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height_Req_Inches)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age_Req)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AttractionID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AttractionID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AttractionID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

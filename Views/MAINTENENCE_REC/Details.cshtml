@@ -1,0 +1,36 @@
+﻿@model AdventureLandWebapp.Models.MAINTENENCE_REC
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MAINTENENCE_REC</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AttractionID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AttractionID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Main_Started)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Main_Started)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Main_Ended)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Main_Ended)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

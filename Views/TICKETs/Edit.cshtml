@@ -1,0 +1,49 @@
+﻿@model AdventureLandWebapp.Models.TICKET
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TICKET</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TicketID" />
+            <div class="form-group">
+                <label asp-for="Purchase_Date" class="control-label"></label>
+                <input asp-for="Purchase_Date" class="form-control" />
+                <span asp-validation-for="Purchase_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket_Type" class="control-label"></label>
+                <input asp-for="Ticket_Type" class="form-control" />
+                <span asp-validation-for="Ticket_Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GuestID" class="control-label"></label>
+                <input asp-for="GuestID" class="form-control" />
+                <span asp-validation-for="GuestID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valid_Through" class="control-label"></label>
+                <input asp-for="Valid_Through" class="form-control" />
+                <span asp-validation-for="Valid_Through" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

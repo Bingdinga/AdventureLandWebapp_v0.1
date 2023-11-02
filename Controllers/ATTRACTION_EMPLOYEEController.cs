@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdventureLandWebapp.Data;
 using AdventureLandWebapp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdventureLandWebapp.Controllers
 {
@@ -22,12 +23,13 @@ namespace AdventureLandWebapp.Controllers
         // GET: ATTRACTION_EMPLOYEE
         public async Task<IActionResult> Index()
         {
-              return _context.ATTRACTION_EMPLOYEE != null ? 
-                          View(await _context.ATTRACTION_EMPLOYEE.ToListAsync()) :
-                          Problem("Entity set 'AdventureLandWebappContext.ATTRACTION_EMPLOYEE'  is null.");
+            return _context.ATTRACTION_EMPLOYEE != null ?
+                        View(await _context.ATTRACTION_EMPLOYEE.ToListAsync()) :
+                        Problem("Entity set 'AdventureLandWebappContext.ATTRACTION_EMPLOYEE'  is null.");
         }
 
         // GET: ATTRACTION_EMPLOYEE/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.ATTRACTION_EMPLOYEE == null)
@@ -46,6 +48,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: ATTRACTION_EMPLOYEE/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +57,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: ATTRACTION_EMPLOYEE/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,EmployeeID,AttractionID")] ATTRACTION_EMPLOYEE aTTRACTION_EMPLOYEE)
@@ -68,6 +72,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: ATTRACTION_EMPLOYEE/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ATTRACTION_EMPLOYEE == null)
@@ -86,6 +91,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: ATTRACTION_EMPLOYEE/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeID,AttractionID")] ATTRACTION_EMPLOYEE aTTRACTION_EMPLOYEE)
@@ -119,6 +125,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: ATTRACTION_EMPLOYEE/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ATTRACTION_EMPLOYEE == null)
@@ -137,6 +144,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // POST: ATTRACTION_EMPLOYEE/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

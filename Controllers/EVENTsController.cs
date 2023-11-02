@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdventureLandWebapp.Data;
 using AdventureLandWebapp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdventureLandWebapp.Controllers
 {
@@ -28,6 +29,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENTs/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.EVENT == null)
@@ -46,6 +48,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENTs/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +57,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: EVENTs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("VenueID,EventID,EventName,Event_Started,Event_Ended")] EVENT eVENT)
@@ -68,6 +72,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENTs/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.EVENT == null)
@@ -86,6 +91,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: EVENTs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("VenueID,EventID,EventName,Event_Started,Event_Ended")] EVENT eVENT)
@@ -119,6 +125,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENTs/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.EVENT == null)
@@ -137,6 +144,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // POST: EVENTs/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace AdventureLandWebapp.Controllers
 {
-    [Authorize]
     public class AppRolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

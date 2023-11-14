@@ -1,4 +1,6 @@
-﻿namespace AdventureLandWebapp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AdventureLandWebapp.Models
 {
     public class EMPLOYEE
     {
@@ -9,7 +11,9 @@
         public int Auth_Level { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
-        public int Phone_Number { get; set; }
+        [Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
+        public string Phone_Number { get; set; }
         public DateTime DOB { get; set; }
         public decimal Salary { get; set; }
         public decimal Hourly_Wage { get; set; }

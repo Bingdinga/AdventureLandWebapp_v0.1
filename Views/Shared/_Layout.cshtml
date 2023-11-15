@@ -25,6 +25,51 @@
                 font-size: 24pt;
                 text-shadow: 2px 2px black;
         }
+
+        .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        button {
+            color: whitesmoke;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 18px;
+            background: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+                background: rgba(20, 21, 23, 0.9);
+        }
+
+        .dropdown-options {
+            display: none;
+            position: absolute;
+            overflow: auto;
+            background: rgba(20, 21, 23, 0.9);
+            border-radius: 5px;
+            box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+        }
+
+        .dropdown:hover .dropdown-options {
+            display: block;
+        }
+
+        .dropdown-options a {
+            display: block;
+            color: whitesmoke;
+            padding: 5px;
+            text-decoration: none;
+            padding: 20px 40px;
+        }
+
+        .dropdown-options a:hover {
+            background: rgba(20, 21, 23, 0.7);
+            border-radius: 5px;
+        }
     </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -57,19 +102,32 @@
                         <li class="nav-item text-light">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Map">Map</a>
                         </li>
-                        <li class="nav-item text-light">
-                            <a class="nav-link" asp-area="" asp-controller="AppRoles" asp-action="Index">Roles</a>
-                        </li>
-                        <li class="nav-item text-light">
-                            <a class="nav-link" asp-area="" asp-controller="GUESTs" asp-action="Index">Guests</a>
-                        </li>
-                        <li class="nav-item text-light">
-                            <a class="nav-link" asp-area="" asp-controller="ATTRACTIONs" asp-action="Index">Attractions</a>
-                        </li>
-                        <li class="nav-item text-light">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
+
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <div class="dropdown">
+                            <button>Management</button>
+                            <div class="dropdown-options">
+                                <a class="nav-link" asp-area="" asp-controller="GUESTs" asp-action="Index">Guests</a>
+                                <a class="nav-link" asp-area="" asp-controller="ATTRACTIONs" asp-action="Index">Attractions</a>
+                                <a class="nav-link" asp-area="" asp-controller="EMPLOYEEs" asp-action="Index">Employees</a>
+                            </div>
+                        </div>
+                            
+                      
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="dropdown">
+                            <button>Admin</button>
+                            <div class="dropdown-options">
+                                    <a class="nav-link" asp-area="" asp-controller="AppRoles" asp-action="Index">Roles</a>
+                            </div>
+                        </div>
+                    }
+
                 </div>
             </div>
             <partial name ="_LoginPartial"/> 

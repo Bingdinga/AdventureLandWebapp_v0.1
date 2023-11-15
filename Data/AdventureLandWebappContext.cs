@@ -16,7 +16,7 @@ namespace AdventureLandWebapp.Data
         }
 
         public DbSet<AdventureLandWebapp.Models.EMPLOYEE> EMPLOYEE { get; set; } = default!;
-
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<AdventureLandWebapp.Models.SHOP> SHOP { get; set; } = default!;
 
         public DbSet<AdventureLandWebapp.Models.ATTRACTION> ATTRACTION { get; set; } = default!;

@@ -6,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AdventureLandWebappContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AdventureLandWebappContext") ?? throw new InvalidOperationException("Connection string 'AdventureLandWebappContext' not found.")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AdventureLandWebappContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AdventureLandWebappContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

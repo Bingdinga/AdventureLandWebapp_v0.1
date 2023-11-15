@@ -29,7 +29,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUESTs/Details/5
-        [Authorize]
+        [Authorize(Roles = "Admin")] // controles access based on roles
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.GUEST == null)

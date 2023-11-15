@@ -1,16 +1,46 @@
 ﻿<!DOCTYPE html>
+
+
 <html lang="en">
 <head>
+    <style>
+        nav{
+            font-family: Garamond;
+            color: whitesmoke;
+            font-size: 24pt;
+            text-shadow: 2px 2px black;
+            background: rgba(20, 21, 23, 0.7);
+        }
+
+        a {
+            font-family: Garamond;
+            color: whitesmoke;
+            font-size: 24pt;
+            text-shadow: 2px 2px black;
+        }
+
+        a:visited{
+                font-family: Garamond;
+                color: whitesmoke;
+                font-size: 24pt;
+                text-shadow: 2px 2px black;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AdventureLandWebapp</title>
+    <title>@ViewData["Title"] - Adventure Land</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AdventureLandWebapp.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AdventureLandWebapp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -18,66 +48,26 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    
+                    
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="GUESTs" asp-action="Index">Guests</a>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Map">Map</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="GUEST_REC" asp-action="Index">Guest Recreation Informaiton</a>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="AppRoles" asp-action="Index">Roles</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="EVENTs" asp-action="Index">Privacy</a>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="GUESTs" asp-action="Index">Guests</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="EVENT_WORK_REC" asp-action="Index">Privacy</a>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="ATTRACTIONs" asp-action="Index">Attractions</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="EMPLOYEEs" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AUTH_CODES" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ATTRACTIONs" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ATTRACTION_EMPLOYEE" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MAINTENENCE_PERSONNEL_REC" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MAINTENENCE_REC" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PERSONNEL_WORK_REC" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ROLE_CODES" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SHOP_EMPLOYEE" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SHOP_INVENTORY" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SHOP_ITEM" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SHOPs" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TICKET_TYPES" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TICKETs" asp-action="Index">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>

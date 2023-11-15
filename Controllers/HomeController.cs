@@ -23,6 +23,18 @@ namespace AdventureLandWebapp.Controllers
             return View();
         }
 
+        public IActionResult Map()
+        {
+            return View();
+        }
+
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Message Set Inn HomeController.cs";
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

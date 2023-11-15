@@ -11,109 +11,105 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AdventureLandWebapp.Controllers
 {
-    public class GUESTsController : Controller
+    public class REPORTsCONTROLLER : Controller
     {
         private readonly AdventureLandWebappContext _context;
 
-        public GUESTsController(AdventureLandWebappContext context)
+        public REPORTsCONTROLLER(AdventureLandWebappContext context)
         {
             _context = context;
         }
 
-        // GET: GUESTs
-        public async Task<IActionResult> Index()
+        // GET: EMPLOYEEs
+        public IActionResult Index()
         {
-            try
-            {
-                if (_context.GUEST != null)
-                {
-                    var guests = await _context.GUEST.ToListAsync();
-                    return View(guests);
-                }
-                else
-                {
-                    return Problem("Entity set 'AdventureLandWebappContext.GUEST' is null.");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log the exception for further investigation
-                // You can use a logging framework like Serilog, NLog, or log to the console for simplicity
-                Console.WriteLine($"Error in GUESTsController.Index: {ex.Message}");
-                return Problem("An error occurred while processing the request.");
-            }
+            return View();
         }
 
+        public IActionResult RevenueReport()
+        {
+            return View();
+        }
 
-        // GET: GUESTs/Details/5
-        [Authorize(Roles = "Admin")] // controles access based on roles
+        public IActionResult AttendanceReport()
+        {
+            return View();
+        }
+
+        public IActionResult EmployeeProductivityReport()
+        {
+            return View();
+        }
+
+        // GET: EMPLOYEEs/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.GUEST == null)
+            if (id == null || _context.EMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            var gUEST = await _context.GUEST
-                .FirstOrDefaultAsync(m => m.GuestID == id);
-            if (gUEST == null)
+            var eMPLOYEE = await _context.EMPLOYEE
+                .FirstOrDefaultAsync(m => m.EmployeeID == id);
+            if (eMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            return View(gUEST);
+            return View(eMPLOYEE);
         }
 
-        // GET: GUESTs/Create
+        // GET: EMPLOYEEs/Create
         [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: GUESTs/Create
+        // POST: EMPLOYEEs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GuestID,FName,LName,DOB,Phone_Number,Height")] GUEST gUEST)
+        public async Task<IActionResult> Create([Bind("EmployeeID,SSN,SuperID,Role,Auth_Level,FName,LName,Phone_Number,DOB,Salary,Hourly_Wage")] EMPLOYEE eMPLOYEE)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(gUEST);
+                _context.Add(eMPLOYEE);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(gUEST);
+            return View(eMPLOYEE);
         }
 
-        // GET: GUESTs/Edit/5
+        // GET: EMPLOYEEs/Edit/5
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.GUEST == null)
+            if (id == null || _context.EMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            var gUEST = await _context.GUEST.FindAsync(id);
-            if (gUEST == null)
+            var eMPLOYEE = await _context.EMPLOYEE.FindAsync(id);
+            if (eMPLOYEE == null)
             {
                 return NotFound();
             }
-            return View(gUEST);
+            return View(eMPLOYEE);
         }
 
-        // POST: GUESTs/Edit/5
+        // POST: EMPLOYEEs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GuestID,FName,LName,DOB,Phone_Number,Height")] GUEST gUEST)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeID,SSN,SuperID,Role,Auth_Level,FName,LName,Phone_Number,DOB,Salary,Hourly_Wage")] EMPLOYEE eMPLOYEE)
         {
-            if (id != gUEST.GuestID)
+            if (id != eMPLOYEE.EmployeeID)
             {
                 return NotFound();
             }
@@ -122,12 +118,12 @@ namespace AdventureLandWebapp.Controllers
             {
                 try
                 {
-                    _context.Update(gUEST);
+                    _context.Update(eMPLOYEE);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GUESTExists(gUEST.GuestID))
+                    if (!EMPLOYEEExists(eMPLOYEE.EmployeeID))
                     {
                         return NotFound();
                     }
@@ -138,51 +134,51 @@ namespace AdventureLandWebapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(gUEST);
+            return View(eMPLOYEE);
         }
 
-        // GET: GUESTs/Delete/5
+        // GET: EMPLOYEEs/Delete/5
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.GUEST == null)
+            if (id == null || _context.EMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            var gUEST = await _context.GUEST
-                .FirstOrDefaultAsync(m => m.GuestID == id);
-            if (gUEST == null)
+            var eMPLOYEE = await _context.EMPLOYEE
+                .FirstOrDefaultAsync(m => m.EmployeeID == id);
+            if (eMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            return View(gUEST);
+            return View(eMPLOYEE);
         }
 
-        // POST: GUESTs/Delete/5
+        // POST: EMPLOYEEs/Delete/5
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.GUEST == null)
+            if (_context.EMPLOYEE == null)
             {
-                return Problem("Entity set 'AdventureLandWebappContext.GUEST'  is null.");
+                return Problem("Entity set 'AdventureLandWebappContext.EMPLOYEE'  is null.");
             }
-            var gUEST = await _context.GUEST.FindAsync(id);
-            if (gUEST != null)
+            var eMPLOYEE = await _context.EMPLOYEE.FindAsync(id);
+            if (eMPLOYEE != null)
             {
-                _context.GUEST.Remove(gUEST);
+                _context.EMPLOYEE.Remove(eMPLOYEE);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool GUESTExists(int id)
+        private bool EMPLOYEEExists(int id)
         {
-          return (_context.GUEST?.Any(e => e.GuestID == id)).GetValueOrDefault();
+          return (_context.EMPLOYEE?.Any(e => e.EmployeeID == id)).GetValueOrDefault();
         }
     }
 }

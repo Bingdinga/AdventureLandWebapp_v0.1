@@ -21,6 +21,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUEST_REC
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.GUEST_REC != null ? 
@@ -72,7 +73,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUEST_REC/Edit/5
-        [Authorize]
+        [Authorize(Roles = ("Manager, Admin"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.GUEST_REC == null)
@@ -91,7 +92,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: GUEST_REC/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Manager, Admin"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,GuestID,TicketID,Arrived,Departed")] GUEST_REC gUEST_REC)
@@ -125,7 +126,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUEST_REC/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Manager, Admin"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.GUEST_REC == null)
@@ -144,7 +145,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // POST: GUEST_REC/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Manager, Admin"))]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

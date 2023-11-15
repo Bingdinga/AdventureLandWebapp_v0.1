@@ -23,14 +23,12 @@ namespace AdventureLandWebapp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
-                }
+        }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(IdentityRole model)
         {
             // avoid duplicate

@@ -21,6 +21,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUESTs
+        [Authorize(Roles = ("Manager, Admin, Attendant"))]
         public async Task<IActionResult> Index()
         {
               return _context.GUEST != null ? 
@@ -29,7 +30,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUESTs/Details/5
-        [Authorize(Roles = "Admin")] // controles access based on roles
+        [Authorize(Roles = "Admin, Manager")] // controles access based on roles
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.GUEST == null)
@@ -48,7 +49,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUESTs/Create
-        [Authorize]
+        [Authorize(Roles = ("Manager, Admin, Attendant"))]
         public IActionResult Create()
         {
             return View();
@@ -57,7 +58,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: GUESTs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Manager, Admin, Attendant"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("GuestID,FName,LName,DOB,Phone_Number,Height")] GUEST gUEST)

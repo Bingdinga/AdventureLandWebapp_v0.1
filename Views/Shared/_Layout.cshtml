@@ -16,14 +16,14 @@
             font-family: Garamond;
             color: whitesmoke;
             font-size: 24pt;
-            text-shadow: 2px 2px black;
+            text-shadow: none;
         }
 
-        a:visited{
-                font-family: Garamond;
-                color: whitesmoke;
-                font-size: 24pt;
-                text-shadow: 2px 2px black;
+        a:visited {
+            font-family: Garamond;
+            color: whitesmoke;
+            font-size: 24pt;
+            text-shadow: 2px 2px black;
         }
 
         .dropdown {
@@ -35,7 +35,7 @@
             color: whitesmoke;
             border: none;
             border-radius: 5px;
-            padding: 15px 30px;
+            padding: 5px 10px;
             font-size: 18px;
             background: none;
             cursor: pointer;
@@ -66,6 +66,14 @@
             padding: 20px 40px;
         }
 
+        .dropdown-options a:visited {
+            display: block;
+            color: whitesmoke;
+            padding: 5px;
+            text-decoration: none;
+            padding: 20px 40px;
+        }
+
         .dropdown-options a:hover {
             background: rgba(20, 21, 23, 0.7);
             border-radius: 5px;
@@ -82,12 +90,22 @@
     <style>
         body {
             background-color: dimgrey;
+        }        
+        table {
+            background-color: azure;
+            color: black;
+            text-align: center;
+        }
+        a:visited {
+            font-family: Garamond;
+            color: rebeccapurple;
+            font-size: 24pt;
+            text-shadow: 2px 2px black;
         }
     </style>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AdventureLandWebapp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -102,16 +120,57 @@
                         <li class="nav-item text-light">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Map">Map</a>
                         </li>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="EVENTs" asp-action="Index">Events</a>
+                        </li>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="SHOPs" asp-action="Index">Shops</a>
+                        </li>
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="ATTRACTIONs" asp-action="Index">Attractions</a>
+                        </li>
+
+                        <li class="nav-item text-light">
+                            <a class="nav-link" asp-area="" asp-controller="AppRoles" asp-action="Index">ROLES(T)</a>
+                        </li>
                     </ul>
+
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Attendant"))
+                    {
+                        <div class="dropdown">
+                            <button>Guest/Tickets</button>
+                            <div class="dropdown-options">
+                                <a class="nav-link" asp-area="" asp-controller="GUESTs" asp-action="Index">Guests</a>
+                                <a class="nav-link" asp-area="" asp-controller="GUEST_REC" asp-action="Index">Guest Ledger</a>
+                                <a class="nav-link" asp-area="" asp-controller="TICKETs" asp-action="Index">Tickets</a>
+
+                            </div>
+                        </div>
+                    }
+
+                     @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Maintenance"))
+                    {
+                        <div class="dropdown">
+                            <button>Maintanence</button>
+                            <div class="dropdown-options">
+                                <a class="nav-link" asp-area="" asp-controller="MAINTENENCE_PERSONNEL_REC" asp-action="Index">Maint. Work</a>
+                                <a class="nav-link" asp-area="" asp-controller="MAINTENENCE_REC" asp-action="Index">Maint. Records</a>
+                                <a class="nav-link" asp-area="" asp-controller="ATTRACTIONs" asp-action="Index">Attractions</a>
+                            </div>
+                        </div>
+                    }
 
                     @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                     {
                         <div class="dropdown">
                             <button>Management</button>
                             <div class="dropdown-options">
-                                <a class="nav-link" asp-area="" asp-controller="GUESTs" asp-action="Index">Guests</a>
-                                <a class="nav-link" asp-area="" asp-controller="ATTRACTIONs" asp-action="Index">Attractions</a>
                                 <a class="nav-link" asp-area="" asp-controller="EMPLOYEEs" asp-action="Index">Employees</a>
+                                <a class="nav-link" asp-area="" asp-controller="PERSONNEL_WORK_REC" asp-action="Index">Work Records</a>
+                                <a class="nav-link" asp-area="" asp-controller="SHOP_EMPLOYEE" asp-action="Index">Shop Personnel</a>
+                                <a class="nav-link" asp-area="" asp-controller="SHOP_INVENTORY_ITEM" asp-action="Index">Shop Inventories</a>
+                                <a class="nav-link" asp-area="" asp-controller="SHOP_ITEM" asp-action="Index">Shop Items</a>
+
                             </div>
                         </div>
                             
@@ -123,7 +182,8 @@
                         <div class="dropdown">
                             <button>Admin</button>
                             <div class="dropdown-options">
-                                    <a class="nav-link" asp-area="" asp-controller="AppRoles" asp-action="Index">Roles</a>
+                                <a class="nav-link" asp-area="" asp-controller="AppRoles" asp-action="Index">Roles</a>
+                                <a class="nav-link" asp-area="" asp-controller="TICKET_TYPES" asp-action="Index">Ticket Types</a>
                             </div>
                         </div>
                     }

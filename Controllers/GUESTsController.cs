@@ -23,27 +23,10 @@ namespace AdventureLandWebapp.Controllers
         // GET: GUESTs
         public async Task<IActionResult> Index()
         {
-            try
-            {
-                if (_context.GUEST != null)
-                {
-                    var guests = await _context.GUEST.ToListAsync();
-                    return View(guests);
-                }
-                else
-                {
-                    return Problem("Entity set 'AdventureLandWebappContext.GUEST' is null.");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log the exception for further investigation
-                // You can use a logging framework like Serilog, NLog, or log to the console for simplicity
-                Console.WriteLine($"Error in GUESTsController.Index: {ex.Message}");
-                return Problem("An error occurred while processing the request.");
-            }
+              return _context.GUEST != null ? 
+                          View(await _context.GUEST.ToListAsync()) :
+                          Problem("Entity set 'AdventureLandWebappContext.GUEST'  is null.");
         }
-
 
         // GET: GUESTs/Details/5
         [Authorize(Roles = "Admin")] // controles access based on roles

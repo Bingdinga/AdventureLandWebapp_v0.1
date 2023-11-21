@@ -29,7 +29,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUEST_REC/Details/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.GUEST_REC == null)
@@ -48,7 +48,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUEST_REC/Create
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();

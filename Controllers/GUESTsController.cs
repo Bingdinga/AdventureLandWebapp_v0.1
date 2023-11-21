@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AdventureLandWebapp.Data;
 using AdventureLandWebapp.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace AdventureLandWebapp.Controllers
 {
@@ -21,6 +22,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: GUESTs
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.GUEST != null ? 

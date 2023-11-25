@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AdventureLandWebapp.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Reflection.Metadata;
+using AdventureLandWebapp.Controllers;
 
 namespace AdventureLandWebapp.Data
 {
@@ -47,5 +49,15 @@ namespace AdventureLandWebapp.Data
 
         public DbSet<AdventureLandWebapp.Models.SHOP_ITEM> SHOP_ITEM { get; set; } = default!;
 
+        // letting  EF Core know that the target table has a trigger
+        /* protected override void OnModelCreating(ModelBuilder modelBuilder)
+         {
+             modelBuilder.Entity<MAINTENENCE_REC>()
+                 .ToTable(tb => tb.HasTrigger("SomeTrigger"));
+         }*/
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Conventions.Add(_ => new BlankTriggerAddingConvention());
+        }
     }
 }

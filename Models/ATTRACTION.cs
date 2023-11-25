@@ -5,7 +5,9 @@
     using System.ComponentModel.DataAnnotations.Schema;
     public class ATTRACTION
     {
+        [Display(Name = "AttractionID")]
         public int AttractionID { get; set; }
+
         [Display(Name = "Name")]
         public string AttractionName { get; set;}
 
@@ -23,7 +25,7 @@
         [DataType(DataType.Date)]
         public DateTime Last_Maintained { get; set; }
 
-        [Display(Name = "Height Requirement (Inches)")]
+        [Display(Name = "Height Requirement (In)")]
         public int Height_Req_Inches { get; set; }
 
         [Display(Name = "Age Requirement")]

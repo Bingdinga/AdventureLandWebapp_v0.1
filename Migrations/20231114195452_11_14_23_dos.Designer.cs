@@ -4,6 +4,7 @@ using AdventureLandWebapp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdventureLandWebapp.Migrations
 {
     [DbContext(typeof(AdventureLandWebappContext))]
-    partial class AdventureLandWebappContextModelSnapshot : ModelSnapshot
+    [Migration("20231114195452_11_14_23_dos")]
+    partial class _11_14_23_dos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

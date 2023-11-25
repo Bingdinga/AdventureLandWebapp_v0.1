@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace AdventureLandWebapp.Controllers
 {
-    [Authorize]
     public class AppRolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -15,6 +14,8 @@ namespace AdventureLandWebapp.Controllers
         }
 
         //List all the roles created
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             var roles = _roleManager.Roles;
@@ -22,14 +23,12 @@ namespace AdventureLandWebapp.Controllers
         }
 
         [HttpGet]
-
         public IActionResult Create()
         {
             return View();
-                }
+        }
 
         [HttpPost]
-
         public async Task<IActionResult> Create(IdentityRole model)
         {
             // avoid duplicate

@@ -11,92 +11,106 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AdventureLandWebapp.Controllers
 {
-    public class AUTH_CODESController : Controller
+    public class REPORTSController : Controller
     {
         private readonly AdventureLandWebappContext _context;
 
-        public AUTH_CODESController(AdventureLandWebappContext context)
+        public REPORTSController(AdventureLandWebappContext context)
         {
             _context = context;
         }
 
-        // GET: AUTH_CODES
-        public async Task<IActionResult> Index()
+        // GET: EMPLOYEEs
+        [Authorize(Roles = ("Admin,Manager"))]
+        public IActionResult Index()
         {
-              return _context.AUTH_CODES != null ? 
-                          View(await _context.AUTH_CODES.ToListAsync()) :
-                          Problem("Entity set 'AdventureLandWebappContext.AUTH_CODES'  is null.");
+            return View();
         }
 
-        // GET: AUTH_CODES/Details/5
-        [Authorize]
+        public IActionResult AttendanceReport()
+        {
+            return View();
+        }
+
+        public IActionResult EmployeeProductivityReport()
+        {
+            return View();
+        }
+
+        public IActionResult RevenueReport()
+        {
+            return View();
+        }
+
+        // GET: EMPLOYEEs/Details/5
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.AUTH_CODES == null)
+            if (id == null || _context.EMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            var aUTH_CODES = await _context.AUTH_CODES
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (aUTH_CODES == null)
+            var eMPLOYEE = await _context.EMPLOYEE
+                .FirstOrDefaultAsync(m => m.EmployeeID == id);
+            if (eMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            return View(aUTH_CODES);
+            return View(eMPLOYEE);
         }
 
-        // GET: AUTH_CODES/Create
-        [Authorize]
+        // GET: EMPLOYEEs/Create
+        [Authorize(Roles = ("Admin,Manager"))]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: AUTH_CODES/Create
+        // POST: EMPLOYEEs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Auth_Code,Auth_Desc")] AUTH_CODES aUTH_CODES)
+        public async Task<IActionResult> Create([Bind("EmployeeID,SSN,SuperID,Role,Auth_Level,FName,LName,Phone_Number,DOB,Salary,Hourly_Wage")] EMPLOYEE eMPLOYEE)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(aUTH_CODES);
+                _context.Add(eMPLOYEE);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(aUTH_CODES);
+            return View(eMPLOYEE);
         }
 
-        // GET: AUTH_CODES/Edit/5
-        [Authorize]
+        // GET: EMPLOYEEs/Edit/5
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.AUTH_CODES == null)
+            if (id == null || _context.EMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            var aUTH_CODES = await _context.AUTH_CODES.FindAsync(id);
-            if (aUTH_CODES == null)
+            var eMPLOYEE = await _context.EMPLOYEE.FindAsync(id);
+            if (eMPLOYEE == null)
             {
                 return NotFound();
             }
-            return View(aUTH_CODES);
+            return View(eMPLOYEE);
         }
 
-        // POST: AUTH_CODES/Edit/5
+        // POST: EMPLOYEEs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Auth_Code,Auth_Desc")] AUTH_CODES aUTH_CODES)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeID,SSN,SuperID,Role,Auth_Level,FName,LName,Phone_Number,DOB,Salary,Hourly_Wage")] EMPLOYEE eMPLOYEE)
         {
-            if (id != aUTH_CODES.Id)
+            if (id != eMPLOYEE.EmployeeID)
             {
                 return NotFound();
             }
@@ -105,12 +119,12 @@ namespace AdventureLandWebapp.Controllers
             {
                 try
                 {
-                    _context.Update(aUTH_CODES);
+                    _context.Update(eMPLOYEE);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AUTH_CODESExists(aUTH_CODES.Id))
+                    if (!EMPLOYEEExists(eMPLOYEE.EmployeeID))
                     {
                         return NotFound();
                     }
@@ -121,51 +135,51 @@ namespace AdventureLandWebapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(aUTH_CODES);
+            return View(eMPLOYEE);
         }
 
-        // GET: AUTH_CODES/Delete/5
-        [Authorize]
+        // GET: EMPLOYEEs/Delete/5
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.AUTH_CODES == null)
+            if (id == null || _context.EMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            var aUTH_CODES = await _context.AUTH_CODES
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (aUTH_CODES == null)
+            var eMPLOYEE = await _context.EMPLOYEE
+                .FirstOrDefaultAsync(m => m.EmployeeID == id);
+            if (eMPLOYEE == null)
             {
                 return NotFound();
             }
 
-            return View(aUTH_CODES);
+            return View(eMPLOYEE);
         }
 
-        // POST: AUTH_CODES/Delete/5
-        [Authorize]
+        // POST: EMPLOYEEs/Delete/5
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.AUTH_CODES == null)
+            if (_context.EMPLOYEE == null)
             {
-                return Problem("Entity set 'AdventureLandWebappContext.AUTH_CODES'  is null.");
+                return Problem("Entity set 'AdventureLandWebappContext.EMPLOYEE'  is null.");
             }
-            var aUTH_CODES = await _context.AUTH_CODES.FindAsync(id);
-            if (aUTH_CODES != null)
+            var eMPLOYEE = await _context.EMPLOYEE.FindAsync(id);
+            if (eMPLOYEE != null)
             {
-                _context.AUTH_CODES.Remove(aUTH_CODES);
+                _context.EMPLOYEE.Remove(eMPLOYEE);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AUTH_CODESExists(int id)
+        private bool EMPLOYEEExists(int id)
         {
-          return (_context.AUTH_CODES?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.EMPLOYEE?.Any(e => e.EmployeeID == id)).GetValueOrDefault();
         }
     }
 }

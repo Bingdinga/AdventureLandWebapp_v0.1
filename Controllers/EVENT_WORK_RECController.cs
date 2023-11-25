@@ -21,6 +21,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENT_WORK_REC
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Index()
         {
               return _context.EVENT_WORK_REC != null ? 
@@ -29,7 +30,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENT_WORK_REC/Details/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.EVENT_WORK_REC == null)
@@ -72,7 +73,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENT_WORK_REC/Edit/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.EVENT_WORK_REC == null)
@@ -91,7 +92,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: EVENT_WORK_REC/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeID,Work_Started,Work_Completed")] EVENT_WORK_REC eVENT_WORK_REC)
@@ -125,7 +126,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EVENT_WORK_REC/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.EVENT_WORK_REC == null)
@@ -144,7 +145,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // POST: EVENT_WORK_REC/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

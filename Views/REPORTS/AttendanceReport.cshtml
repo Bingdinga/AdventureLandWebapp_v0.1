@@ -1,0 +1,64 @@
+﻿@model AdventureLandWebapp.Models.TICKET
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<html>
+<head>
+    <title>Ticket Visualization</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ticket Visualization</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Purchase Date</th>
+                <th>Ticket Type</th>
+                <th>Guest ID</th>
+                <th>Valid Through</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in ViewBag.TICKET)
+            {
+                <tr>
+                    <td>@ticket.TicketID</td>
+                    <td>@ticket.Purchase_Date.ToString("yyyy-MM-dd")</td>
+                    <td>@ticket.Ticket_Type</td>
+                    <td>@ticket.GuestID</td>
+                    <td>@ticket.Valid_Through.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+<h1>Create</h1>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

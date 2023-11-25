@@ -21,6 +21,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: ATTRACTIONs
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.ATTRACTION != null ? 
@@ -48,7 +49,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: ATTRACTIONs/Create
-        [Authorize]
+        [Authorize(Roles =("Admin"))]
         public IActionResult Create()
         {
             return View();
@@ -57,7 +58,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: ATTRACTIONs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Admin"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AttractionID,AttractionName,Capacity,Open_Time,Close_Time,Last_Maintained,Height_Req_Inches,Age_Req")] ATTRACTION aTTRACTION)
@@ -72,7 +73,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: ATTRACTIONs/Edit/5
-        [Authorize]
+        [Authorize(Roles = ("Admin"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ATTRACTION == null)
@@ -91,7 +92,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: ATTRACTIONs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Admin"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AttractionID,AttractionName,Capacity,Open_Time,Close_Time,Last_Maintained,Height_Req_Inches,Age_Req")] ATTRACTION aTTRACTION)
@@ -125,7 +126,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: ATTRACTIONs/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Admin"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ATTRACTION == null)
@@ -144,7 +145,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // POST: ATTRACTIONs/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Admin"))]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

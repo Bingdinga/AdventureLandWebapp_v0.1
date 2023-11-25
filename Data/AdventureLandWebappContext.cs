@@ -35,10 +35,6 @@ namespace AdventureLandWebapp.Data
 
         public DbSet<AdventureLandWebapp.Models.ATTRACTION_EMPLOYEE> ATTRACTION_EMPLOYEE { get; set; } = default!;
 
-        public DbSet<AdventureLandWebapp.Models.AUTH_CODES> AUTH_CODES { get; set; } = default!;
-
-        public DbSet<AdventureLandWebapp.Models.ROLE_CODES> ROLE_CODES { get; set; } = default!;
-
         public DbSet<AdventureLandWebapp.Models.PERSONNEL_WORK_REC> PERSONNEL_WORK_REC { get; set; } = default!;
 
         public DbSet<AdventureLandWebapp.Models.TICKET> TICKET { get; set; } = default!;

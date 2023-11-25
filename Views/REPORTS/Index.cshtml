@@ -1,15 +1,40 @@
 ﻿@model IEnumerable<AdventureLandWebapp.Models.EMPLOYEE>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reports";
 }
 
-<h1>Index</h1>
+<style>
+    .custom-btn {
+        height: 80px; /* Adjust the height as needed */
+        width:300px;
+        /*background-color: #28a745; /* Green color */
+        color: white; /* White text */
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center; /* Center the text vertically */
+        font-size: 30px; /* Increase text size slightly */
+    }
+</style>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<div class="container">
+    <h1 class="text-center mt-4">Adventure Land Reports</h1>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-4 mb-3">
+            <a class="btn btn-success btn-lg btn-block custom-btn" asp-action="AttendanceReport">Attendance/Popularity</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a class="btn btn-success btn-lg btn-block custom-btn" asp-action="RevenueReport">Revenue Report</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a class="btn btn-success btn-lg btn-block custom-btn" asp-action="EmployeeProductivityReport">Employee Productivity</a>
+        </div>
+    </div>
+</div>
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -86,4 +111,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

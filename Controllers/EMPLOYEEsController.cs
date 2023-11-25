@@ -21,6 +21,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EMPLOYEEs
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Index()
         {
               return _context.EMPLOYEE != null ? 
@@ -29,7 +30,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EMPLOYEEs/Details/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.EMPLOYEE == null)
@@ -48,7 +49,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EMPLOYEEs/Create
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         public IActionResult Create()
         {
             return View();
@@ -57,7 +58,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: EMPLOYEEs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmployeeID,SSN,SuperID,Role,Auth_Level,FName,LName,Phone_Number,DOB,Salary,Hourly_Wage")] EMPLOYEE eMPLOYEE)
@@ -72,7 +73,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EMPLOYEEs/Edit/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.EMPLOYEE == null)
@@ -91,7 +92,7 @@ namespace AdventureLandWebapp.Controllers
         // POST: EMPLOYEEs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EmployeeID,SSN,SuperID,Role,Auth_Level,FName,LName,Phone_Number,DOB,Salary,Hourly_Wage")] EMPLOYEE eMPLOYEE)
@@ -125,7 +126,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // GET: EMPLOYEEs/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.EMPLOYEE == null)
@@ -144,7 +145,7 @@ namespace AdventureLandWebapp.Controllers
         }
 
         // POST: EMPLOYEEs/Delete/5
-        [Authorize]
+        [Authorize(Roles = ("Admin,Manager"))]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
